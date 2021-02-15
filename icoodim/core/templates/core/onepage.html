@@ -1,6 +1,205 @@
 {% extends 'base.html' %}
 
 
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/v-shared.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/onepage.js') }}"></script>
+{% endblock %}
+
+{% block drawer %}
+{% raw %}
+  <q-drawer show-if-above v-model="visibleDrawer" side="left" content-class="bg-blue-grey-1 q-pt-lg q-pl-sm text-weight-medium" :width="250">
+    <q-scroll-area v-if="event" class="fit">
+      <q-list dense>
+        <q-item-label header>{{ event.name }}</q-item-label>
+        <q-item clickable :to="{name: 'index'}" exact>
+          <q-item-section avatar><q-icon name="o_house_siding"></q-icon></q-item-section>
+          <q-item-section>Home</q-item-section>
+        </q-item>
+        <q-item clickable :to="{name: 'icoopma'}" exact>
+          <q-item-section avatar><q-icon name="o_graphic_eq"></q-icon></q-item-section>
+          <q-item-section>ICOOPMA</q-item-section>
+        </q-item>
+        <q-item clickable :to="{name: 'eurodim'}" exact>
+          <q-item-section avatar><q-icon name="o_grid_3x3"></q-icon></q-item-section>
+          <q-item-section>EuroDIM</q-item-section>
+        </q-item>
+        <q-separator class="q-my-md"></q-separator>
+        <q-item clickable :to="{name: 'abstracts'}" exact>
+          <q-item-section avatar><q-icon name="o_send"></q-icon></q-item-section>
+          <q-item-section>Abstract submission</q-item-section>
+        </q-item>
+        <q-item clickable :to="{name: 'registration'}" exact>
+          <q-item-section avatar><q-icon name="o_drive_file_rename_outline"></q-icon></q-item-section>
+          <q-item-section>Registration</q-item-section>
+        </q-item>
+        <q-separator class="q-my-md"></q-separator>
+        <q-item clickable :to="{name: 'venue'}" exact>
+          <q-item-section avatar><q-icon name="o_place"></q-icon></q-item-section>
+          <q-item-section>Venue</q-item-section>
+        </q-item>
+        <q-item clickable :to="{name: 'venue-accommodation'}" exact>
+          <q-item-section avatar><q-icon name="o_hotel"></q-icon></q-item-section>
+          <q-item-section>Accommodation</q-item-section>
+        </q-item>
+        <q-item clickable :to="{name: 'venue-transportation'}" exact>
+          <q-item-section avatar><q-icon name="o_tram"></q-icon></q-item-section>
+          <q-item-section>Transportation</q-item-section>
+        </q-item>
+        <q-item clickable tag="a" href="https://visit.gent.be/en/good-know/practical-information/why-ghent" target="_blank">
+          <q-item-section avatar><q-icon name="o_holiday_village"></q-icon></q-item-section>
+          <q-item-section>Tourism</q-item-section>
+          <q-item-section side><q-icon name="o_launch" size="xs" class="text-grey-5"></q-icon></q-item-section>
+        </q-item>
+      </q-list>
+    </q-scroll-area>
+  </q-drawer>
+{% endraw %}
+{% endblock %}
+
 {% block content %}
-  <h5>ICOOPMA-EURODIM</h5>
+{% raw %}
+  <div v-cloak v-if="event" class="row">
+    <div class="col-12 col-md-10 col-lg-9">
+      <h5 v-if="$q.screen.lt.md" class="q-mt-md q-mb-none">
+        <q-btn flat @click="visibleDrawer = !visibleDrawer" round dense icon="o_menu" class="menu-icon"></q-btn>
+        <span>{{ event.name }}</span>
+      </h5>
+      <h4 v-else class="q-mt-sm q-mb-lg">{{ event.name }}</h4>
+      <div is="router-view"></div>
+    </div>
+  </div>
+{% endraw %}
+{% endblock %}
+
+{% block vue_templates %}
+{% raw %}
+
+  <script type="text/x-template" id="v-index">
+    <div>
+      <h6 class="q-mt-md q-mb-lg">{{ event.full_name }}</h6>
+      <div class="row q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
+        <div class="col-12 col-md-6">
+          <marked :text="event.presentation"></marked>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="bg-grey-1 q-pa-lg">
+            <strong>Important dates</strong>
+            <ul>
+              <li v-for="date in event.dates">{{ date.date | moment('MMMM Y') }}, {{ date.note }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (16/10)">
+        <q-img src="{% endraw %}{{ url_for('static', filename='images/canoeing.jpg') }}{% raw %}" class="rounded-borders"></q-img>
+      </q-responsive>¡
+    </div>
+  </script>
+
+  <script type="text/x-template" id="v-eurodim">
+    <div v-if="contents">
+      <h6 class="q-mt-md q-mb-lg">EuroDIM: 14th Europhysical Conference on Defects in Insulating Materials</h6>
+      <q-tabs v-model="tab" no-caps dense align="left" class="text-primary">
+        <q-tab name="about" label="About EuroDIM" />
+        <q-tab name="topics" label="Topics" />
+        <q-tab name="committees" label="Committees" />
+      </q-tabs>
+      <q-separator></q-separator>
+      <q-tab-panels v-model="tab" class="q-mt-lg">
+        <q-tab-panel name="about" class="q-pa-none">
+          <marked :text="contents['eurodim.about'].value"></marked>
+        </q-tab-panel>
+        <q-tab-panel name="topics" class="q-pa-none">
+          <marked :text="contents['eurodim.topics'].value"></marked>
+        </q-tab-panel>
+        <q-tab-panel name="committees" class="q-pa-none">
+          <marked :text="contents['eurodim.committees'].value"></marked>
+        </q-tab-panel>
+      </q-tab-panels>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="v-icoopma">
+    <div v-if="contents">
+      <h6 class="q-mt-md q-mb-lg">ICOOPMA: 9th International Conference on Optical, Optoelectronic and Photonic Materials</h6>
+      <q-tabs bordered v-model="tab" no-caps dense align="left" class="text-primary">
+        <q-tab name="about" label="About ICOOPMA" />
+        <q-tab name="topics" label="Topics" />
+        <q-tab name="committees" label="Committees" />
+      </q-tabs>
+      <q-separator></q-separator>
+      <q-tab-panels v-model="tab" class="q-mt-lg">
+        <q-tab-panel name="about" class="q-pa-none">
+          <marked :text="contents['icoopma.about'].value"></marked>
+        </q-tab-panel>
+        <q-tab-panel name="topics" class="q-pa-none">
+          <marked :text="contents['icoopma.topics'].value"></marked>
+        </q-tab-panel>
+        <q-tab-panel name="committees" class="q-pa-none">
+          <marked :text="contents['icoopma.committees'].value"></marked>
+        </q-tab-panel>
+      </q-tab-panels>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="v-abstracts">
+    <div>
+      <h6 class="q-mt-md q-mb-lg">Abstract submission</h6>
+      <marked :text="contents['abstract_submission'].value"></marked>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="v-registration">
+    <div>
+      <h6 class="q-mt-md q-mb-lg">Registration</h6>
+      <marked :text="contents['registration'].value"></marked>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="v-venue">
+    <div>
+      <h6 class="q-mt-md q-mb-lg">Venue: Culture and Convention Center Het Pand</h6>
+      <p class="q-mb-xl">Het Pand, a former Dominican monastery, is located in the historical centre of the city, on the banks of the river Leie. The oldest parts of this impressive building date from the 13th century. During five centuries it was extended and refashioned in different styles. Since its rehabilitation and restoration, finished in 1991, "Het Pand" has been offering a wide range of possibilities for the organisation of scientific congresses and cultural events. Het Pand houses some valuable collections, such as the rich ethnographical and archaeological collections of the university, the Museum for the History of Medicine, full-size photographs of paintings of Brueghel and Early Flemish Masters, and an interesting collection of stained glass.</p>
+      <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (16/10)">
+        <q-img src="{% endraw %}{{ url_for('static', filename='images/het-pand--patio.jpg') }}{% raw %}" class="rounded-borders"></q-img>
+      </q-responsive>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="v-venue-accommodation">
+    <div>
+      <h6 class="q-mt-md q-mb-lg">Accommodation</h6>
+      <div class="row justify-between q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
+        <div class="col-12 col-md-6">
+          <marked :text="contents['venue.accommodation'].value"></marked>
+        </div>
+        <div class="col-12 col-md-5">
+          <q-btn unelevated type="a" href="https://visit.gent.be/en/overnight-stay" target="_blank" rel="noopener" color="primary" label="More info at stad.gent" class="full-width"></q-btn>
+        </div>
+      </div>
+      <q-responsive :ratio="16/10">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1vwYDe9SWobnWHuF4lhEU0fFkyyqYSojs" width="640" height="480" class="no-border rounded-borders"></iframe>
+      </q-responsive>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="v-venue-transportation">
+    <div>
+      <h6 class="q-mt-md q-mb-lg">Transportation</h6>
+      <div class="row justify-between q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
+        <div class="col-12 col-md-6">
+          <marked :text="contents['venue.transportation'].value"></marked>
+        </div>
+        <div class="col-12 col-md-5">
+          <q-btn unelevated type="a" href="https://visit.gent.be/en/good-know/practical-information/how-reach-ghent" target="_blank" rel="noopener" color="primary" label="More info at stad.gent" class="full-width"></q-btn>
+          <q-responsive :ratio="1/1" class="q-mt-xl">
+            <q-img src="{% endraw %}{{ url_for('static', filename='images/transport.jpg') }}{% raw %}" class="rounded-borders"></q-img>
+          </q-responsive>
+        </div>
+      </div>
+    </div>
+  </script>
+
+{% endraw %}
 {% endblock %}

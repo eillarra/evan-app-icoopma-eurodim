@@ -1,1 +1,1 @@
-web: gunicorn -b :5000 icoodim.app:create_app()
+web: gunicorn -b :5000 "icoodim.app:create_app()"
