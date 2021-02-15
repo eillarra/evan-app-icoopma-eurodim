@@ -1,0 +1,25 @@
+$ugent-blue: #1e64c8;
+$ugent-yellow: #ffd200;
+$elis-purple: #6f71b9;
+
+$icoodim-dark-grey: #464748;
+$icoodim-navbar: #F1F8E9;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-strong: 600;
+
+$primary-color: $ugent-blue;
+
+
+body {
+  font-family: 'Raleway', Geneva, Verdana, sans-serif;
+  color: $icoodim-dark-grey;
+}
+
+@media (min-width: 1280px) {
+  .app-container {
+    max-width: 1280px;
+    margin: auto;
+  }
+}

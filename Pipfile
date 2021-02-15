@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[requires]
+python_version = "3.8"
+
+[packages]
+commonmark = "*"
+environs = "*"
+flask = "*"
+flask-assets = "*"
+flask-caching = "*"
+flask-compress = "*"
+gunicorn = "*"
+pyscss = "*"
+redis = "*"
+requests = "*"
+
+[dev-packages]
+black = "==19.10b0"
+flake8 = "*"
+flake8-mypy = "*"
+pytest = "*"
+pytest-cov = "*"

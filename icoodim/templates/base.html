@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <!--<link href="//fonts.googleapis.com/css2?family=Raleway:wght@300;700&family=Open+Sans:wght@300;400;600&family=Material+Icons&display=swap" rel="stylesheet">-->
+    <link href="https://unpkg.com/quasar@1.15.3/dist/quasar.min.css" type="text/css" rel="stylesheet">
+    {% assets 'base_css' %}
+      <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
+    {% block styles %}{% endblock %}
+    <title>{% block title %}ICOOPMA-EURODIM{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+
+  <body class="{% block body_class %}{% endblock %}">
+    <div v-cloak id="vue">
+      <q-layout view="{% block layout_view %}hHh lpR fff{% endblock %}">
+
+        {% block header %}
+          <q-header class="app-header" height-hint="98">
+            <div class="app-container">
+              {% block toolbar %}{% endblock %}
+            </div>
+          </q-header>
+        {% endblock %}
+
+        {% block container %}
+          <q-page-container>
+            <q-page>
+              <div class="app-container">
+                {% block content %}{% endblock %}
+              </div>
+            </q-page>
+          </q-page-container>
+        {% endblock %}
+
+        <q-footer class="bg-transparent app-footer q-py-lg">
+          <div class="app-container">
+            {% block footer_links %}{% endblock %}
+            <div class="row reverse">
+              <div class="col-12 col-md-9">
+                <div class="text-caption">
+                  <p><small>&copy; 2021 Ghent University</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </q-footer>
+
+      </q-layout>
+    </div>
+
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vuex@3.6.2/dist/vuex.min.js"></script>
+    <script src="https://unpkg.com/vue-router@3.5.1/dist/vue-router.min.js"></script>
+    <script src="https://unpkg.com/quasar@1.15.3/dist/quasar.ie.polyfills.umd.min.js"></script>
+    <script src="https://unpkg.com/quasar@1.15.3/dist/quasar.umd.min.js"></script>
+    {% block scripts %}
+      <script>
+        new Vue({
+          el: '#vue'
+        });
+      </script>
+    {% endblock %}
+
+  </body>
+</html>

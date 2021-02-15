@@ -1,0 +1,11 @@
+from environs import Env
+
+
+env = Env()
+env.read_env()
+
+ENV = env.str("FLASK_ENV", default="production")
+DEBUG = ENV == "development"
+SECRET_KEY = env.str("FLASK_SECRET_KEY")
+
+EVAN_ID = env.str("EVAN_ID", default="icoopma-eurodim")

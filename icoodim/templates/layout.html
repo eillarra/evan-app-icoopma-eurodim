@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+    <link href="//fonts.googleapis.com/css?family=Raleway:300,400,600|Material+Icons&display=swap" type="text/css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap@4.3.1/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
+    {% assets 'base_css' %}
+        <link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
+    {% endassets %}
+    <link href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" type="text/css" rel="stylesheet">
+    <title>{% block title %}icoodim 2020{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:site_name" content="icoodim 2020">
+    {% block structured_data %}{% endblock %}
+    {% block head_scripts %}{% endblock %}
+  </head>
+  <body>
+    <div class="container mb-md-4 mb-lg-5 bg-white p-4 p-lg-5">
+      {% block content %}{% endblock %}
+    </div>
+    <script src="{{ url_for('static', filename='vendor/jquery@3.3.1/jquery-slim.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/popper.js@1.14.7/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap@4.3.1/bootstrap.min.js') }}"></script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>
