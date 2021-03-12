@@ -2,8 +2,11 @@
 
 
 {% block scripts %}
-  <script src="{{ url_for('static', filename='js/v-shared.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/onepage.js') }}"></script>
+  {% assets filters='rjsmin', output='site/__bundle__/core/index.js',
+    'core/js/v-shared.js',
+    'core/js/onepage.js' %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
 {% endblock %}
 
 {% block drawer %}
