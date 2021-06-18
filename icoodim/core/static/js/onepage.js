@@ -24,15 +24,18 @@ var Store = new Vuex.Store({
       axios.get(EVAN_URL).then(function (res) {
         if (res.data.custom_data.dates) {
           res.data.dates = res.data.custom_data.dates.map(function (d) {
+            d.startDate = moment(d.start_date);
             if (d.format == 'range' && d.end_date) {
-              d.formatted = moment(d.start_date).format('MMM D') + '-' + moment(d.end_date).format('D, Y');
+              d.formatted = d.startDate.format('MMM D') + '-' + moment(d.end_date).format('D, Y');
             } else {
-              d.formatted = moment(d.start_date).format({
+              d.formatted = d.startDate.format({
                 'date': 'MMM D, Y',
                 'month': 'MMM Y'
               }[d.format] || 'MMMM Y');
             }
             return d;
+          }).sort(function (a, b) {
+            return a.startDate.diff(b.startDate);
           });
         } else res.data.dates = [];
 
