@@ -51,7 +51,7 @@
         </q-item>
         <q-item clickable tag="a" href="https://visit.gent.be/en/good-know/practical-information/why-ghent" target="_blank">
           <q-item-section avatar><q-icon name="o_holiday_village"></q-icon></q-item-section>
-          <q-item-section>Tourism</q-item-section>
+          <q-item-section>About Ghent</q-item-section>
           <q-item-section side><q-icon name="o_launch" size="xs" class="text-grey-5"></q-icon></q-item-section>
         </q-item>
       </q-list>
@@ -79,24 +79,24 @@
 {% raw %}
 
   <script type="text/x-template" id="v-index">
-    <div>
+    <div v-if="event">
       <h6 class="q-mt-md q-mb-lg">{{ event.full_name }}</h6>
       <div class="row q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
         <div class="col-12 col-md-6">
           <marked :text="event.presentation"></marked>
         </div>
-        <div class="col-12 col-md-6">
+        <div v-if="event.dates.length" class="col-12 col-md-6">
           <div class="bg-grey-1 q-pa-lg">
             <strong>Important dates</strong>
-            <ul>
-              <li v-for="date in event.dates">{{ date.date | moment('MMMM Y') }}, {{ date.note }}</li>
+            <ul class="q-pl-md">
+              <li v-for="date in event.dates">{{ date.formatted }}: {{ date.label }}</li>
             </ul>
           </div>
         </div>
       </div>
       <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (16/10)">
         <q-img src="{% endraw %}{{ url_for('static', filename='images/canoeing.jpg') }}{% raw %}" class="rounded-borders"></q-img>
-      </q-responsive>¡
+      </q-responsive>
     </div>
   </script>
 
