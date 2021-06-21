@@ -85,11 +85,11 @@
         <div class="col-12 col-md-6">
           <marked :text="event.presentation"></marked>
         </div>
-        <div v-if="event.dates.length" class="col-12 col-md-6">
+        <div v-if="dates.length" class="col-12 col-md-6">
           <div class="bg-grey-1 q-pa-lg">
             <strong>Important dates</strong>
             <ul class="q-pl-md">
-              <li v-for="date in event.dates">{{ date.formatted }}: {{ date.label }}</li>
+              <li v-for="date in dates">{{ date.formatted }}: {{ date.label }}</li>
             </ul>
           </div>
         </div>

@@ -22,23 +22,6 @@ var Store = new Vuex.Store({
     getEvent: function (state) {
       var self = this;
       axios.get(EVAN_URL).then(function (res) {
-        if (res.data.custom_data.dates) {
-          res.data.dates = res.data.custom_data.dates.map(function (d) {
-            d.startDate = moment(d.start_date);
-            if (d.format == 'range' && d.end_date) {
-              d.formatted = d.startDate.format('MMM D') + '-' + moment(d.end_date).format('D, Y');
-            } else {
-              d.formatted = d.startDate.format({
-                'date': 'MMM D, Y',
-                'month': 'MMM Y'
-              }[d.format] || 'MMMM Y');
-            }
-            return d;
-          }).sort(function (a, b) {
-            return a.startDate.diff(b.startDate);
-          });
-        } else res.data.dates = [];
-
         state.event = res.data;
         Quasar.plugins.Loading.hide();
 
@@ -52,7 +35,27 @@ var Store = new Vuex.Store({
 
 var IndexView = {
   template: '#v-index',
-  computed: Vuex.mapState(['event']),
+  computed: _.extend(
+    Vuex.mapState(['event']), {
+    dates: function () {
+      if (!this.event.custom_data.dates || !this.event.custom_data.dates.length) return [];
+
+      return this.event.custom_data.dates.map(function (d) {
+        d.startDate = moment(d.start_date);
+        if (d.format == 'range' && d.end_date) {
+          d.formatted = d.startDate.format('MMM D') + '-' + moment(d.end_date).format('D, Y');
+        } else {
+          d.formatted = d.startDate.format({
+            'date': 'MMM D, Y',
+            'month': 'MMM Y'
+          }[d.format] || 'MMMM Y');
+        }
+        return d;
+      }).sort(function (a, b) {
+        return a.startDate.diff(b.startDate);
+      });
+    }
+  })
 };
 
 var IcoopmaView = {
