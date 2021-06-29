@@ -22,5 +22,11 @@ h6 {
       text-decoration: none;
       color: inherit; }
 
-.menu-icon {
-  margin-left: -5px; }
+blockquote {
+  border-left: 1px dashed #464748;
+  border-right: 1px dashed #464748;
+  padding: 0 2rem;
+  margin: 0; }
+
+  .menu-icon {
+    margin-left: -5px; }

@@ -81,17 +81,18 @@
   <script type="text/x-template" id="v-index">
     <div v-if="event">
       <h6 class="q-mt-md q-mb-lg">{{ event.full_name }}</h6>
-      <div class="row q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
-        <div class="col-12 col-md-6">
+      <div class="row q-my-lg" :class="{'q-col-gutter-y-md q-col-gutter-x-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
+        <div class="col-12 col-md-7">
           <marked :text="event.presentation"></marked>
-        </div>
-        <div v-if="dates.length" class="col-12 col-md-6">
-          <div class="bg-grey-1 q-pa-lg">
+          <blockquote v-if="dates.length" class="q-my-xl">
             <strong>Important dates</strong>
             <ul class="q-pl-md">
               <li v-for="date in dates">{{ date.formatted }}: {{ date.label }}</li>
             </ul>
-          </div>
+          </blockquote>
+        </div>
+        <div class="col-12 col-md-5">
+          <a class="twitter-timeline" data-height="600" data-dnt="true" href="https://twitter.com/icoopmaeurodim"></a>
         </div>
       </div>
       <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (16/10)">
@@ -161,9 +162,9 @@
   </script>
 
   <script type="text/x-template" id="v-venue">
-    <div>
-      <h6 class="q-mt-md q-mb-lg">Venue: Culture and Convention Center Het Pand</h6>
-      <p class="q-mb-xl">Het Pand, a former Dominican monastery, is located in the historical centre of the city, on the banks of the river Leie. The oldest parts of this impressive building date from the 13th century. During five centuries it was extended and refashioned in different styles. Since its rehabilitation and restoration, finished in 1991, "Het Pand" has been offering a wide range of possibilities for the organisation of scientific congresses and cultural events. Het Pand houses some valuable collections, such as the rich ethnographical and archaeological collections of the university, the Museum for the History of Medicine, full-size photographs of paintings of Brueghel and Early Flemish Masters, and an interesting collection of stained glass.</p>
+    <div v-if="venue">
+      <h6 class="q-mt-md q-mb-lg">Venue: {{ venue.name }}</h6>
+      <marked :text="venue.presentation" class="q-mb-xl"></marked>
       <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (16/10)">
         <q-img src="{% endraw %}{{ url_for('static', filename='images/het-pand--patio.jpg') }}{% raw %}" class="rounded-borders"></q-img>
       </q-responsive>
