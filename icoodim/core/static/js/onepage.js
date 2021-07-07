@@ -76,9 +76,21 @@ var IndexView = {
       });
     }
   }),
+  methods: {
+    loadTwitter: function () {
+      if (window.twttr && window.twttr.widgets) {
+        window.twttr.widgets.load();
+      } else {
+        var self = this;
+        setTimeout(function () { self.loadTwitter() }, 25);
+        return;
+      }
+    }
+  },
   mounted: function () {
+    var lt = this.loadTwitter;
     this.$nextTick(function () {
-      twttr.widgets.load();
+      lt();
     });
   }
 };
