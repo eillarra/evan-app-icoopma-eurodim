@@ -68,10 +68,10 @@
 {% block footer_links %}
 {% raw %}
   <p class="text-caption q-mt-xl">Sponsors</p>
-  <div class="row q-col-gutter-y-lg q-col-gutter-x-xl q-mb-xl">
-    <div v-for="sponsor in sponsors" v-show="sponsor.logo" class="col-4 col-sm-3 col-md-2">
+  <div class="row items-center q-col-gutter-y-lg q-col-gutter-x-xl q-mb-xl">
+    <div v-for="sponsor in sponsors" v-show="sponsor.logo" class="col-4 col-sm-3 col-md-2 text-center">
       <a :href="sponsor.website" target="_blank" rel="noopener">
-        <q-img :src="sponsor.logo" class="full-width"></q-img>
+        <img :src="sponsor.logo" :title="sponsor.name" class="logo">
       </a>
     </div>
   </div>
