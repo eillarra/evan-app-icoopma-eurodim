@@ -219,7 +219,16 @@ new Vue({
       visibleDrawer: true,
     }
   },
-  computed: Vuex.mapState(['event']),
+  computed: _.extend(
+    Vuex.mapState(['event']), {
+    sponsors: function () {
+      if (!this.event) return [];
+      return this.event.sponsors.map(function (obj) {
+        obj.logo = (obj.files.length) ? obj.files[0].url : null;
+        return obj;
+      });
+    }
+  }),
   created: function () {
     this.$store.commit('getEvent');
     this.$store.commit('getContents');

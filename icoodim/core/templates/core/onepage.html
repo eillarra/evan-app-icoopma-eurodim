@@ -65,6 +65,19 @@
 {% endraw %}
 {% endblock %}
 
+{% block footer_links %}
+{% raw %}
+  <p class="text-caption q-mt-xl">Sponsors</p>
+  <div class="row q-col-gutter-y-lg q-col-gutter-x-xl q-mb-xl">
+    <div v-for="sponsor in sponsors" v-show="sponsor.logo" class="col-4 col-sm-3 col-md-2">
+      <a :href="sponsor.website" target="_blank" rel="noopener">
+        <q-img :src="sponsor.logo" class="full-width"></q-img>
+      </a>
+    </div>
+  </div>
+{% endraw %}
+{% endblock %}
+
 {% block content %}
 {% raw %}
   <div v-cloak v-if="event" class="row">
