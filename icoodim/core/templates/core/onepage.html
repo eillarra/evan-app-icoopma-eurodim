@@ -166,21 +166,21 @@
   </script>
 
   <script type="text/x-template" id="v-abstracts">
-    <div>
+    <div v-if="contents">
       <h6 class="q-mt-md q-mb-lg">Abstract submission</h6>
       <marked :text="contents['abstract_submission'].value"></marked>
     </div>
   </script>
 
   <script type="text/x-template" id="v-registration">
-    <div>
+    <div v-if="contents">
       <h6 class="q-mt-md q-mb-lg">Registration</h6>
       <marked :text="contents['registration'].value"></marked>
     </div>
   </script>
 
   <script type="text/x-template" id="v-sponsors-call">
-    <div>
+    <div v-if="contents">
       <h6 class="q-mt-md q-mb-lg">Call for sponsors</h6>
       <marked :text="contents['sponsors.call'].value"></marked>
     </div>
@@ -197,7 +197,7 @@
   </script>
 
   <script type="text/x-template" id="v-venue-accommodation">
-    <div>
+    <div v-if="contents">
       <h6 class="q-mt-md q-mb-lg">Accommodation</h6>
       <div class="row justify-between q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
         <div class="col-12 col-md-6">
@@ -214,7 +214,7 @@
   </script>
 
   <script type="text/x-template" id="v-venue-transportation">
-    <div>
+    <div v-if="contents">
       <h6 class="q-mt-md q-mb-lg">Transportation</h6>
       <div class="row justify-between q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
         <div class="col-12 col-md-6">
