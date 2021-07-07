@@ -1,7 +1,6 @@
 var EVAN_URL = 'https://evan.ugent.be/api/v1/events/icoopma-eurodim/';
 
 
-
 window.twttr = (function (d, s, id) {
   var js;
   var fjs = d.getElementsByTagName(s)[0];
@@ -114,6 +113,11 @@ var RegistrationView = {
   computed: Vuex.mapState(['event', 'contents'])
 };
 
+var SponsorsCallView = {
+  template: '#v-sponsors-call',
+  computed: Vuex.mapState(['event', 'contents'])
+};
+
 var VenueView = {
   template: '#v-venue',
   computed: _.extend(
@@ -160,6 +164,12 @@ var Router = new VueRouter({
       path: '/abstract-submission/',
       pathToRegexpOptions: {strict: true},
       component: AbstractsView
+    },
+    {
+      name: 'sponsors-call',
+      path: '/call-for-sponsors/',
+      pathToRegexpOptions: {strict: true},
+      component: SponsorsCallView
     },
     {
       name: 'registration',

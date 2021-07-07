@@ -54,6 +54,11 @@
           <q-item-section>About Ghent</q-item-section>
           <q-item-section side><q-icon name="o_launch" size="xs" class="text-grey-5"></q-icon></q-item-section>
         </q-item>
+        <q-separator class="q-my-md"></q-separator>
+        <q-item clickable :to="{name: 'sponsors-call'}" exact>
+          <q-item-section avatar><q-icon name="o_shield"></q-icon></q-item-section>
+          <q-item-section>Call for sponsors</q-item-section>
+        </q-item>
       </q-list>
     </q-scroll-area>
   </q-drawer>
@@ -158,6 +163,13 @@
     <div>
       <h6 class="q-mt-md q-mb-lg">Registration</h6>
       <marked :text="contents['registration'].value"></marked>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="v-sponsors-call">
+    <div>
+      <h6 class="q-mt-md q-mb-lg">Call for sponsors</h6>
+      <marked :text="contents['sponsors.call'].value"></marked>
     </div>
   </script>
 
