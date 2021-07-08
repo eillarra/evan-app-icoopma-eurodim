@@ -6,7 +6,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 from .core.views import core
 from .commands import clear_cache
-from .extensions import assets, cache, compress
+from .extensions import assets, cache, compress, htmlmin
 from .filters import markdown_filter
 
 
@@ -52,6 +52,7 @@ def register_extensions(app):
     assets.register("base_css", Bundle("scss/base.scss", filters="pyscss", output="css/base.css"))
     cache.init_app(app, config=cache_config)
     compress.init_app(app)
+    htmlmin.init_app(app)
 
 
 def register_jinjas(app):
