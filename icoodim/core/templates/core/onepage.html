@@ -67,7 +67,7 @@
 
 {% block footer_links %}
 {% raw %}
-  <p class="text-caption q-mt-xl">Sponsors</p>
+  <p class="text-caption q-mt-lg">Sponsors</p>
   <div class="row items-center q-col-gutter-y-lg q-col-gutter-x-xl q-mb-xl">
     <div v-for="sponsor in sponsors" v-show="sponsor.logo" class="col-4 col-sm-3 col-md-2 text-center">
       <a :href="sponsor.website" target="_blank" rel="noopener">
@@ -101,7 +101,7 @@
       <h6 class="q-mt-md q-mb-lg">{{ event.full_name }}</h6>
       <div class="row q-my-lg" :class="{'q-col-gutter-y-md q-col-gutter-x-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
         <div class="col-12 col-md-7">
-          <marked :text="event.presentation"></marked>
+          <marked :text="event.presentation" />
           <blockquote v-if="dates.length" class="q-my-xl">
             <strong>Important dates</strong>
             <ul class="q-pl-md">
@@ -113,8 +113,8 @@
           <a class="twitter-timeline" data-height="600" data-dnt="true" href="https://twitter.com/icoopmaeurodim"></a>
         </div>
       </div>
-      <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (16/10)">
-        <q-img src="{% endraw %}{{ url_for('static', filename='images/canoeing.jpg') }}{% raw %}" class="rounded-borders"></q-img>
+      <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (2/1)">
+        <q-img src="{% endraw %}{{ url_for('static', filename='images/canoeing.jpg') }}{% raw %}" class="rounded-borders" />
       </q-responsive>
     </div>
   </script>
@@ -130,13 +130,13 @@
       <q-separator></q-separator>
       <q-tab-panels v-model="tab" class="q-mt-lg">
         <q-tab-panel name="about" class="q-pa-none">
-          <marked :text="contents['eurodim.about'].value"></marked>
+          <marked :text="contents['eurodim.about'].value" />
         </q-tab-panel>
         <q-tab-panel name="topics" class="q-pa-none">
-          <marked :text="contents['eurodim.topics'].value"></marked>
+          <marked :text="contents['eurodim.topics'].value" />
         </q-tab-panel>
         <q-tab-panel name="committees" class="q-pa-none">
-          <marked :text="contents['eurodim.committees'].value"></marked>
+          <marked :text="contents['eurodim.committees'].value" />
         </q-tab-panel>
       </q-tab-panels>
     </div>
@@ -153,13 +153,13 @@
       <q-separator></q-separator>
       <q-tab-panels v-model="tab" class="q-mt-lg">
         <q-tab-panel name="about" class="q-pa-none">
-          <marked :text="contents['icoopma.about'].value"></marked>
+          <marked :text="contents['icoopma.about'].value" />
         </q-tab-panel>
         <q-tab-panel name="topics" class="q-pa-none">
-          <marked :text="contents['icoopma.topics'].value"></marked>
+          <marked :text="contents['icoopma.topics'].value" />
         </q-tab-panel>
         <q-tab-panel name="committees" class="q-pa-none">
-          <marked :text="contents['icoopma.committees'].value"></marked>
+          <marked :text="contents['icoopma.committees'].value" />
         </q-tab-panel>
       </q-tab-panels>
     </div>
@@ -168,30 +168,30 @@
   <script type="text/x-template" id="v-abstracts">
     <div v-if="contents">
       <h6 class="q-mt-md q-mb-lg">Abstract submission</h6>
-      <marked :text="contents['abstract_submission'].value"></marked>
+      <marked :text="contents['abstract_submission'].value" />
     </div>
   </script>
 
   <script type="text/x-template" id="v-registration">
     <div v-if="contents">
       <h6 class="q-mt-md q-mb-lg">Registration</h6>
-      <marked :text="contents['registration'].value"></marked>
+      <marked :text="contents['registration'].value" />
     </div>
   </script>
 
   <script type="text/x-template" id="v-sponsors-call">
     <div v-if="contents">
       <h6 class="q-mt-md q-mb-lg">Call for sponsors</h6>
-      <marked :text="contents['sponsors.call'].value"></marked>
+      <marked :text="contents['sponsors.call'].value" />
     </div>
   </script>
 
   <script type="text/x-template" id="v-venue">
     <div v-if="venue">
       <h6 class="q-mt-md q-mb-lg">Venue: {{ venue.name }}</h6>
-      <marked :text="venue.presentation" class="q-mb-xl"></marked>
-      <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (16/10)">
-        <q-img src="{% endraw %}{{ url_for('static', filename='images/het-pand--patio.jpg') }}{% raw %}" class="rounded-borders"></q-img>
+      <marked :text="venue.presentation" class="q-mb-xl" />
+      <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (2/1)">
+        <q-img src="{% endraw %}{{ url_for('static', filename='images/het-pand--patio.jpg') }}{% raw %}" class="rounded-borders" />
       </q-responsive>
     </div>
   </script>
@@ -201,13 +201,13 @@
       <h6 class="q-mt-md q-mb-lg">Accommodation</h6>
       <div class="row justify-between q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
         <div class="col-12 col-md-6">
-          <marked :text="contents['venue.accommodation'].value"></marked>
+          <marked :text="contents['venue.accommodation'].value" />
         </div>
         <div class="col-12 col-md-5">
-          <q-btn unelevated type="a" href="https://visit.gent.be/en/overnight-stay" target="_blank" rel="noopener" color="primary" label="More info at visit.gent" class="full-width"></q-btn>
+          <q-btn unelevated type="a" href="https://visit.gent.be/en/overnight-stay" target="_blank" rel="noopener" color="primary" label="More info at visit.gent" class="full-width" />
         </div>
       </div>
-      <q-responsive :ratio="16/10">
+      <q-responsive :ratio="2/1">
         <iframe src="https://www.google.com/maps/d/embed?mid=1vwYDe9SWobnWHuF4lhEU0fFkyyqYSojs" width="640" height="480" class="no-border rounded-borders"></iframe>
       </q-responsive>
     </div>
@@ -218,12 +218,12 @@
       <h6 class="q-mt-md q-mb-lg">Transportation</h6>
       <div class="row justify-between q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
         <div class="col-12 col-md-6">
-          <marked :text="contents['venue.transportation'].value"></marked>
+          <marked :text="contents['venue.transportation'].value" />
         </div>
         <div class="col-12 col-md-5">
-          <q-btn unelevated type="a" href="https://visit.gent.be/en/good-know/practical-information/how-reach-ghent" target="_blank" rel="noopener" color="primary" label="More info at visit.gent" class="full-width"></q-btn>
+          <q-btn unelevated type="a" href="https://visit.gent.be/en/good-know/practical-information/how-reach-ghent" target="_blank" rel="noopener" color="primary" label="More info at visit.gent" class="full-width" />
           <q-responsive :ratio="1/1" class="q-mt-xl">
-            <q-img src="{% endraw %}{{ url_for('static', filename='images/transport.jpg') }}{% raw %}" class="rounded-borders"></q-img>
+            <q-img src="{% endraw %}{{ url_for('static', filename='images/transport.jpg') }}{% raw %}" class="rounded-borders" />
           </q-responsive>
         </div>
       </div>
