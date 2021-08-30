@@ -173,8 +173,25 @@
   </script>
 
   <script type="text/x-template" id="v-registration">
-    <div v-if="contents">
+    <div v-if="event && contents">
       <h6 class="q-mt-md q-mb-lg">Registration</h6>
+      <q-banner dense rounded class="bg-yellow-3">Early registration deadline: <strong>{{ event.registrationEarlyDeadline }}</strong></q-banner>
+      <q-markup-table flat class="q-my-lg">
+        <thead>
+          <tr>
+            <th></th>
+            <th v-if="earlyFeesExist">Early registration</th>
+            <th>Late registration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, idx) in fees" :key="idx">
+            <td>{{ item[false][0].notes }}</td>
+            <td v-if="earlyFeesExist" data-th="Early" class="text-center">{{ item[true][0].value }} EUR</td>
+            <td data-th="Late" class="text-center">{{ item[false][0].value }} EUR</td>
+          </tr>
+        </tbody>
+      </q-markup-table>
       <marked :text="contents['registration'].value" />
     </div>
   </script>

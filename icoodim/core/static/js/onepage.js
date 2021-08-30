@@ -42,6 +42,7 @@ var Store = new Vuex.Store({
     getEvent: function (state) {
       var self = this;
       axios.get(EVAN_URL).then(function (res) {
+        res.data.registrationEarlyDeadline = moment(res.data.registration_early_deadline);
         state.event = res.data;
         Quasar.plugins.Loading.hide();
 
@@ -122,7 +123,21 @@ var AbstractsView = {
 
 var RegistrationView = {
   template: '#v-registration',
-  computed: Vuex.mapState(['event', 'contents'])
+  computed: _.extend(
+    Vuex.mapState(['event', 'contents']), {
+    fees: function () {
+      if (!this.event) return {};
+      var fees = _.groupBy(this.event.fees, 'type');
+      _.each(fees, function (value, key, data) {
+        data[key] = _.groupBy(value, 'is_early');
+      });
+      return fees;
+    },
+    earlyFeesExist: function () {
+      if (!this.event) return false;
+      return _.where(this.event.fees, {is_early: true}).length > 0;
+    }
+  })
 };
 
 var SponsorsCallView = {
