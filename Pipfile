@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"
 
 [packages]
 commonmark = "*"
@@ -19,7 +19,7 @@ pyscss = "*"
 redis = "*"
 
 [dev-packages]
-black = "==19.10b0"
+black = "==21.7b0"
 flake8 = "*"
 flake8-mypy = "*"
 pytest = "*"
