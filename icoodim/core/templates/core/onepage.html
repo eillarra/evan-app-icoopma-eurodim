@@ -206,6 +206,7 @@
   <script type="text/x-template" id="v-venue">
     <div v-if="venue">
       <h6 class="q-mt-md q-mb-lg">Venue: {{ venue.name }}</h6>
+      <q-btn v-if="venue.gmaps" unelevated type="a" :href="venue.gmaps" target="_blank" rel="noopener" color="primary" label="View on Google Maps" class="float-right q-ml-lg q-mb-lg"></q-btn>
       <marked :text="venue.presentation" class="q-mb-xl" />
       <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (2/1)">
         <q-img src="{% endraw %}{{ url_for('static', filename='images/het-pand--patio.jpg') }}{% raw %}" class="rounded-borders" />

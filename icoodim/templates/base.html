@@ -39,9 +39,15 @@
           <q-footer class="bg-transparent text-dark app-footer" :class="{'q-py-lg q-px-xl': $q.screen.gt.sm, 'q-pa-md': $q.screen.lt.md}">
             <div class="app-container">
               {% block footer_links %}{% endblock %}
-              <div class="row">
-                <div class="col-12 text-caption">
+              <div class="row justify-between text-caption">
+                <div class="col-12 col-md-8">
                   <p>&copy; 2021 Ghent University. The images on this web site are reproduced with the permission of the copyright owner, <a href="https://stad.gent/ghent-international" target="_blank" rel="noopener" class="inherit">Stad Gent</a>.</p>
+                </div>
+                <div class="col-12 col-md-4" :class="{'text-right': $q.screen.gt.sm}">
+                  <div class="q-gutter-x-md">
+                    <a href="mailto:icoopma-eurodim@ugent.be" class="inherit">
+                      <q-icon name="o_email" class="q-mr-xs"></q-icon>Contact</a>
+                  </div>
                 </div>
               </div>
             </div>
