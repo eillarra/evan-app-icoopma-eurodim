@@ -59,6 +59,10 @@
           <q-item-section avatar><q-icon name="o_shield"></q-icon></q-item-section>
           <q-item-section>Call for sponsors</q-item-section>
         </q-item>
+        <q-item clickable :to="{name: 'committee'}" exact>
+          <q-item-section avatar><q-icon name="o_groups"></q-icon></q-item-section>
+          <q-item-section>Committee</q-item-section>
+        </q-item>
       </q-list>
     </q-scroll-area>
   </q-drawer>
@@ -181,10 +185,29 @@
     </div>
   </script>
 
+  <script type="text/x-template" id="v-committee">
+    <div v-if="contents">
+      <h6 class="q-mt-md q-mb-lg">Organizing committee</h6>
+      <div class="row justify-between q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
+        <div class="col-12 col-md-9">
+          <marked :text="contents['committee'].value" class="committee-marked" />
+        </div>
+      </div>
+    </div>
+  </script>
+
   <script type="text/x-template" id="v-registration">
     <div v-if="event && contents">
       <h6 class="q-mt-md q-mb-lg">Registration</h6>
-      <q-banner dense rounded class="bg-yellow-3">Early registration deadline: <strong>{{ event.registrationEarlyDeadline }}</strong></q-banner>
+      <q-banner rounded inline-actions class="bg-yellow-2 text-dark q-my-lg">
+        <template v-slot:avatar>
+          <q-icon name="o_edit_calendar" />
+        </template>
+        Early registration deadline: <strong>{{ event.registrationEarlyDeadline }}</strong>
+        <template v-if="event.is_open_for_registration" v-slot:action>
+          <q-btn flat color="primary" label="Register" type="a" target="_blank" rel="noopener" :href="event.registration_url" />
+        </template>
+      </q-banner>
       <q-markup-table flat class="q-my-lg">
         <thead>
           <tr>

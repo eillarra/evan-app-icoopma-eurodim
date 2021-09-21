@@ -121,6 +121,11 @@ var AbstractsView = {
   computed: Vuex.mapState(['event', 'contents'])
 };
 
+var CommitteeView = {
+  template: '#v-committee',
+  computed: Vuex.mapState(['event', 'contents'])
+};
+
 var RegistrationView = {
   template: '#v-registration',
   computed: _.extend(
@@ -193,16 +198,22 @@ var Router = new VueRouter({
       component: AbstractsView
     },
     {
-      name: 'sponsors-call',
-      path: '/call-for-sponsors/',
+      name: 'committee',
+      path: '/organizing-committee/',
       pathToRegexpOptions: {strict: true},
-      component: SponsorsCallView
+      component: CommitteeView
     },
     {
       name: 'registration',
       path: '/registration/',
       pathToRegexpOptions: {strict: true},
       component: RegistrationView
+    },
+    {
+      name: 'sponsors-call',
+      path: '/call-for-sponsors/',
+      pathToRegexpOptions: {strict: true},
+      component: SponsorsCallView
     },
     {
       name: 'venue',
