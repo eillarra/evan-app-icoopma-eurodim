@@ -43,6 +43,11 @@ var Store = new Vuex.Store({
       var self = this;
       axios.get(EVAN_URL).then(function (res) {
         res.data.registrationEarlyDeadline = moment(res.data.registration_early_deadline);
+        try {
+          res.data.abstractSubmissionDeadline = moment(res.data.custom_data.abstracts.submission_deadline);
+        } catch (e) {
+          res.data.abstractSubmissionDeadline = null;
+        }
         state.event = res.data;
         Quasar.plugins.Loading.hide();
 
