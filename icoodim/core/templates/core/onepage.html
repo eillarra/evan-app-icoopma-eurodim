@@ -27,6 +27,10 @@
           <q-item-section avatar><q-icon name="o_grid_3x3"></q-icon></q-item-section>
           <q-item-section>EuroDIM</q-item-section>
         </q-item>
+        <q-item clickable :to="{name: 'speakers'}" exact>
+          <q-item-section avatar><q-icon name="o_record_voice_over"></q-icon></q-item-section>
+          <q-item-section>Invited speakers</q-item-section>
+        </q-item>
         <q-separator class="q-my-md"></q-separator>
         <q-item clickable :to="{name: 'abstracts'}" exact>
           <q-item-section avatar><q-icon name="o_send"></q-icon></q-item-section>
@@ -90,7 +94,7 @@
         <q-btn flat @click="visibleDrawer = !visibleDrawer" round dense icon="o_menu" class="menu-icon"></q-btn>
         <span>{{ event.name }}</span>
       </h5>
-      <h4 v-else class="q-mt-sm q-mb-lg">{{ event.name }}</h4>
+      <h4 v-else class="q-mt-sm q-mb-none">{{ event.name }}</h4>
       <div is="router-view"></div>
     </div>
   </div>
@@ -102,7 +106,7 @@
 
   <script type="text/x-template" id="v-index">
     <div v-if="event">
-      <h6 class="q-mt-md q-mb-lg">{{ event.full_name }}</h6>
+      <h6 class="q-mb-lg">{{ event.full_name }}</h6>
       <q-banner rounded inline-actions class="bg-yellow-2 text-dark q-my-lg">
         <template v-slot:avatar>
           <q-icon name="o_mark_email_read" />
@@ -134,7 +138,7 @@
 
   <script type="text/x-template" id="v-eurodim">
     <div v-if="contents">
-      <h6 class="q-mt-md q-mb-lg">EuroDIM: 14th Europhysical Conference on Defects in Insulating Materials</h6>
+      <h6 class="q-mb-lg">EuroDIM: 14th Europhysical Conference on Defects in Insulating Materials</h6>
       <q-tabs v-model="tab" no-caps dense align="left" class="text-primary">
         <q-tab name="about" label="About EuroDIM" />
         <q-tab name="topics" label="Topics" />
@@ -157,7 +161,7 @@
 
   <script type="text/x-template" id="v-icoopma">
     <div v-if="contents">
-      <h6 class="q-mt-md q-mb-lg">ICOOPMA: 9th International Conference on Optical, Optoelectronic and Photonic Materials</h6>
+      <h6 class="q-mb-lg">ICOOPMA: 9th International Conference on Optical, Optoelectronic and Photonic Materials</h6>
       <q-tabs bordered v-model="tab" no-caps dense align="left" class="text-primary">
         <q-tab name="about" label="About ICOOPMA" />
         <q-tab name="topics" label="Topics" />
@@ -180,7 +184,7 @@
 
   <script type="text/x-template" id="v-abstracts">
     <div v-if="contents">
-      <h6 class="q-mt-md q-mb-lg">Abstract submission</h6>
+      <h6 class="q-mb-lg">Abstract submission</h6>
       <q-banner v-if="event.is_open_for_abstract_submission" rounded inline-actions class="bg-yellow-2 text-dark q-mt-lg q-mb-xl">
         <template v-slot:avatar>
           <q-icon name="o_schedule_send" />
@@ -196,7 +200,7 @@
 
   <script type="text/x-template" id="v-committee">
     <div v-if="contents">
-      <h6 class="q-mt-md q-mb-lg">Organizing committee</h6>
+      <h6 class="q-mb-lg">Organizing committee</h6>
       <div class="row justify-between q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
         <div class="col-12 col-md-9">
           <marked :text="contents['committee'].value" class="committee-marked" />
@@ -207,7 +211,7 @@
 
   <script type="text/x-template" id="v-registration">
     <div v-if="event && contents">
-      <h6 class="q-mt-md q-mb-lg">Registration</h6>
+      <h6 class="q-mb-lg">Registration</h6>
       <q-banner rounded inline-actions class="bg-yellow-2 text-dark q-my-lg">
         <template v-slot:avatar>
           <q-icon name="o_pending_actions" />
@@ -237,16 +241,31 @@
     </div>
   </script>
 
+  <script type="text/x-template" id="v-speakers">
+    <div v-if="contents">
+      <div class="row reverse q-mb-xl q-mt-none" :class="{'q-col-gutter-x-xl': $q.screen.gt.sm}">
+        <div class="col-12 col-md-6">
+          <h6 class="q-mb-lg">Plenary speakers</h6>
+          <marked :text="contents['speakers.plenary'].value" class="committee-marked" />
+        </div>
+        <div class="col-12 col-md-6">
+          <h6 class="q-mb-lg">Invited speakers</h6>
+          <marked :text="contents['speakers'].value" class="committee-marked" />
+        </div>
+      </div>
+    </div>
+  </script>
+
   <script type="text/x-template" id="v-sponsors-call">
     <div v-if="contents">
-      <h6 class="q-mt-md q-mb-lg">Call for sponsors</h6>
+      <h6 class="q-mb-lg">Call for sponsors</h6>
       <marked :text="contents['sponsors.call'].value" />
     </div>
   </script>
 
   <script type="text/x-template" id="v-venue">
     <div v-if="venue">
-      <h6 class="q-mt-md q-mb-lg">Venue: {{ venue.name }}</h6>
+      <h6 class="q-mb-lg">Venue: {{ venue.name }}</h6>
       <q-btn v-if="venue.gmaps" unelevated type="a" :href="venue.gmaps" target="_blank" rel="noopener" color="primary" label="View on Google Maps" class="float-right q-ml-lg q-mb-lg"></q-btn>
       <marked :text="venue.presentation" class="q-mb-xl" />
       <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (2/1)">
@@ -257,7 +276,7 @@
 
   <script type="text/x-template" id="v-venue-accommodation">
     <div v-if="contents">
-      <h6 class="q-mt-md q-mb-lg">Accommodation</h6>
+      <h6 class="q-mb-lg">Accommodation</h6>
       <div class="row justify-between q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
         <div class="col-12 col-md-6">
           <marked :text="contents['venue.accommodation'].value" />
@@ -274,7 +293,7 @@
 
   <script type="text/x-template" id="v-venue-transportation">
     <div v-if="contents">
-      <h6 class="q-mt-md q-mb-lg">Transportation</h6>
+      <h6 class="q-mb-lg">Transportation</h6>
       <div class="row justify-between q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
         <div class="col-12 col-md-6">
           <marked :text="contents['venue.transportation'].value" />

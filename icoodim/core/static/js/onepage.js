@@ -150,6 +150,11 @@ var RegistrationView = {
   })
 };
 
+var SpeakersView = {
+  template: '#v-speakers',
+  computed: Vuex.mapState(['event', 'contents'])
+};
+
 var SponsorsCallView = {
   template: '#v-sponsors-call',
   computed: Vuex.mapState(['event', 'contents'])
@@ -213,6 +218,12 @@ var Router = new VueRouter({
       path: '/registration/',
       pathToRegexpOptions: {strict: true},
       component: RegistrationView
+    },
+    {
+      name: 'speakers',
+      path: '/speakers/',
+      pathToRegexpOptions: {strict: true},
+      component: SpeakersView
     },
     {
       name: 'sponsors-call',
