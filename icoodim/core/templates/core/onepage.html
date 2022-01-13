@@ -10,46 +10,45 @@
 {% endblock %}
 
 {% block drawer %}
-{% raw %}
   <q-drawer show-if-above v-model="visibleDrawer" side="left" content-class="bg-blue-grey-1 q-pt-lg q-pl-sm text-weight-medium" :width="250">
     <q-scroll-area v-if="event" class="fit">
+      <p><img src="{{ url_for('static', filename='images/logo.svg') }}{% raw %}" class="q-ma-sm icoodim" alt="Logo"></p>
       <q-list dense>
-        <q-item-label header>{{ event.name }}</q-item-label>
-        <q-item clickable :to="{name: 'index'}" exact>
+        <q-item clickable :to="{name: 'index'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_house_siding"></q-icon></q-item-section>
           <q-item-section>Home</q-item-section>
         </q-item>
-        <q-item clickable :to="{name: 'icoopma'}" exact>
+        <q-item clickable :to="{name: 'icoopma'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_graphic_eq"></q-icon></q-item-section>
           <q-item-section>ICOOPMA</q-item-section>
         </q-item>
-        <q-item clickable :to="{name: 'eurodim'}" exact>
+        <q-item clickable :to="{name: 'eurodim'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_grid_3x3"></q-icon></q-item-section>
           <q-item-section>EuroDIM</q-item-section>
         </q-item>
-        <q-item clickable :to="{name: 'speakers'}" exact>
+        <q-item clickable :to="{name: 'speakers'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_record_voice_over"></q-icon></q-item-section>
           <q-item-section>Invited speakers</q-item-section>
         </q-item>
         <q-separator class="q-my-md"></q-separator>
-        <q-item clickable :to="{name: 'abstracts'}" exact>
+        <q-item clickable :to="{name: 'abstracts'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_send"></q-icon></q-item-section>
           <q-item-section>Abstract submission</q-item-section>
         </q-item>
-        <q-item clickable :to="{name: 'registration'}" exact>
+        <q-item clickable :to="{name: 'registration'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_drive_file_rename_outline"></q-icon></q-item-section>
           <q-item-section>Registration</q-item-section>
         </q-item>
         <q-separator class="q-my-md"></q-separator>
-        <q-item clickable :to="{name: 'venue'}" exact>
+        <q-item clickable :to="{name: 'venue'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_place"></q-icon></q-item-section>
           <q-item-section>Venue</q-item-section>
         </q-item>
-        <q-item clickable :to="{name: 'venue-accommodation'}" exact>
+        <q-item clickable :to="{name: 'venue-accommodation'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_hotel"></q-icon></q-item-section>
           <q-item-section>Accommodation</q-item-section>
         </q-item>
-        <q-item clickable :to="{name: 'venue-transportation'}" exact>
+        <q-item clickable :to="{name: 'venue-transportation'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_tram"></q-icon></q-item-section>
           <q-item-section>Transportation</q-item-section>
         </q-item>
@@ -59,11 +58,11 @@
           <q-item-section side><q-icon name="o_launch" size="xs" class="text-grey-5"></q-icon></q-item-section>
         </q-item>
         <q-separator class="q-my-md"></q-separator>
-        <q-item clickable :to="{name: 'sponsors-call'}" exact>
+        <q-item clickable :to="{name: 'sponsors-call'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_shield"></q-icon></q-item-section>
           <q-item-section>Call for sponsors</q-item-section>
         </q-item>
-        <q-item clickable :to="{name: 'committee'}" exact>
+        <q-item clickable :to="{name: 'committee'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_groups"></q-icon></q-item-section>
           <q-item-section>Committee</q-item-section>
         </q-item>
@@ -113,7 +112,7 @@
         </template>
         Subscribe to our mailing list for the latest news.
         <template v-slot:action>
-          <q-btn flat color="primary" label="Subscribe" type="a" target="_blank" rel="noopener" href="https://lists.ugent.be/wws/subscribe/icoopma-eurodim" />
+          <q-btn flat color="orange-8" label="Subscribe" type="a" target="_blank" rel="noopener" href="https://lists.ugent.be/wws/subscribe/icoopma-eurodim" />
         </template>
       </q-banner>
       <div class="row q-my-lg" :class="{'q-col-gutter-y-md q-col-gutter-x-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
@@ -139,7 +138,7 @@
   <script type="text/x-template" id="v-eurodim">
     <div v-if="contents">
       <h6 class="q-mb-lg">EuroDIM: 14th Europhysical Conference on Defects in Insulating Materials</h6>
-      <q-tabs v-model="tab" no-caps dense align="left" class="text-primary">
+      <q-tabs v-model="tab" no-caps dense align="left" class="text-orange-8">
         <q-tab name="about" label="About EuroDIM" />
         <q-tab name="topics" label="Topics" />
         <q-tab name="committees" label="Committees" />
@@ -162,7 +161,7 @@
   <script type="text/x-template" id="v-icoopma">
     <div v-if="contents">
       <h6 class="q-mb-lg">ICOOPMA: 9th International Conference on Optical, Optoelectronic and Photonic Materials</h6>
-      <q-tabs bordered v-model="tab" no-caps dense align="left" class="text-primary">
+      <q-tabs bordered v-model="tab" no-caps dense align="left" class="text-orange-8">
         <q-tab name="about" label="About ICOOPMA" />
         <q-tab name="topics" label="Topics" />
         <q-tab name="committees" label="Committees" />
@@ -191,7 +190,7 @@
         </template>
         Submission deadline: <strong>{{ event.abstractSubmissionDeadline }}</strong>
         <template v-slot:action>
-          <q-btn flat color="primary" label="Submit abstract" type="a" target="_blank" rel="noopener" :href="event.abstract_url" />
+          <q-btn flat color="orange-8" label="Submit abstract" type="a" target="_blank" rel="noopener" :href="event.abstract_url" />
         </template>
       </q-banner>
       <marked :text="contents['abstract_submission'].value" />
@@ -218,7 +217,7 @@
         </template>
         Early registration deadline: <strong>{{ event.registrationEarlyDeadline }}</strong>
         <template v-if="event.is_open_for_registration" v-slot:action>
-          <q-btn flat color="primary" label="Register" type="a" target="_blank" rel="noopener" :href="event.registration_url" />
+          <q-btn flat color="orange-8" label="Register" type="a" target="_blank" rel="noopener" :href="event.registration_url" />
         </template>
       </q-banner>
       <q-markup-table flat class="q-my-lg">
@@ -266,7 +265,7 @@
   <script type="text/x-template" id="v-venue">
     <div v-if="venue">
       <h6 class="q-mb-lg">Venue: {{ venue.name }}</h6>
-      <q-btn v-if="venue.gmaps" unelevated type="a" :href="venue.gmaps" target="_blank" rel="noopener" color="primary" label="View on Google Maps" class="float-right q-ml-lg q-mb-lg"></q-btn>
+      <q-btn v-if="venue.gmaps" unelevated type="a" :href="venue.gmaps" target="_blank" rel="noopener" color="orange-8" label="View on Google Maps" class="float-right q-ml-lg q-mb-lg"></q-btn>
       <marked :text="venue.presentation" class="q-mb-xl" />
       <q-responsive :ratio="($q.screen.lt.md) ? (1/1) : (2/1)">
         <q-img src="{% endraw %}{{ url_for('static', filename='images/het-pand--patio.jpg') }}{% raw %}" class="rounded-borders" />
@@ -282,7 +281,7 @@
           <marked :text="contents['venue.accommodation'].value" />
         </div>
         <div class="col-12 col-md-5">
-          <q-btn unelevated type="a" href="https://visit.gent.be/en/overnight-stay" target="_blank" rel="noopener" color="primary" label="More info at visit.gent" class="full-width" />
+          <q-btn unelevated type="a" href="https://visit.gent.be/en/overnight-stay" target="_blank" rel="noopener" color="orange-8" label="More info at visit.gent" class="full-width" />
         </div>
       </div>
       <q-responsive :ratio="2/1">
@@ -299,7 +298,7 @@
           <marked :text="contents['venue.transportation'].value" />
         </div>
         <div class="col-12 col-md-5">
-          <q-btn unelevated type="a" href="https://visit.gent.be/en/good-know/practical-information/how-reach-ghent" target="_blank" rel="noopener" color="primary" label="More info at visit.gent" class="full-width" />
+          <q-btn unelevated type="a" href="https://visit.gent.be/en/good-know/practical-information/how-reach-ghent" target="_blank" rel="noopener" color="orange-8" label="More info at visit.gent" class="full-width" />
           <q-responsive :ratio="1/1" class="q-mt-xl">
             <q-img src="{% endraw %}{{ url_for('static', filename='images/transport.jpg') }}{% raw %}" class="rounded-borders" />
           </q-responsive>

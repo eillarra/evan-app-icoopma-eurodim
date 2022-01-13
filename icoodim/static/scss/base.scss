@@ -4,12 +4,13 @@ $elis-purple: #6f71b9;
 
 $icoodim-dark-grey: #464748;
 $icoodim-navbar: #F1F8E9;
+$icoodim-orange: #f57c00;  // orange-8 #f57c00
 
 $font-weight-light: 300;
 $font-weight-normal: 400;
 $font-weight-strong: 600;
 
-$primary-color: $ugent-blue;
+$primary-color: $icoodim-orange;
 
 
 [v-cloak] {
@@ -52,6 +53,11 @@ blockquote {
 
 .menu-icon {
   margin-left: -5px;
+}
+
+img.icoodim {
+  max-width: 75%;
+  max-height: 80px;
 }
 
 img.logo {
