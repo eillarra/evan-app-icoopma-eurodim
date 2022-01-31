@@ -202,7 +202,7 @@
       <h6 class="q-mb-lg">Organizing committee</h6>
       <div class="row justify-between q-mb-xl" :class="{'q-col-gutter-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
         <div class="col-12 col-md-9">
-          <marked :text="contents['committee'].value" class="committee-marked" />
+          <marked :text="contents['committee'].value" class="people-marked" />
         </div>
       </div>
     </div>
@@ -245,11 +245,11 @@
       <div class="row reverse q-mb-xl q-mt-none" :class="{'q-col-gutter-x-xl': $q.screen.gt.sm}">
         <div class="col-12 col-md-6">
           <h6 class="q-mb-lg">Plenary speakers</h6>
-          <marked :text="contents['speakers.plenary'].value" class="committee-marked" />
+          <marked :text="contents['speakers.plenary'].value" class="people-marked" />
         </div>
         <div class="col-12 col-md-6">
           <h6 class="q-mb-lg">Invited speakers</h6>
-          <marked :text="contents['speakers'].value" class="committee-marked" />
+          <marked :text="contents['speakers'].value" class="people-marked" />
         </div>
       </div>
     </div>

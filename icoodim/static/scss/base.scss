@@ -65,7 +65,11 @@ img.logo {
   max-height: 80px;
 }
 
-.committee-marked {
+.people-marked {
+  p {
+    clear: both;
+  }
+
   a {
     color: inherit;
     text-decoration: none;
@@ -79,6 +83,7 @@ img.logo {
     float: right;
     clear: right;
     max-width: 80px;
+    width: 80px;
     border-radius: 999px;
     margin: 0 0 20px 30px;
     display: block;
