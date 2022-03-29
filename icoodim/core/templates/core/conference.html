@@ -2,9 +2,9 @@
 
 
 {% block scripts %}
-  {% assets filters='rjsmin', output='site/__bundle__/core/index.js',
+  {% assets filters='rjsmin', output='site/__bundle__/core/conference.js',
     'core/js/v-shared.js',
-    'core/js/onepage.js' %}
+    'core/js/conference.js' %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
   {% endassets %}
 {% endblock %}
@@ -29,6 +29,12 @@
         <q-item clickable :to="{name: 'speakers'}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_record_voice_over"></q-icon></q-item-section>
           <q-item-section>Invited speakers</q-item-section>
+        </q-item>
+        <q-separator class="q-my-md"></q-separator>
+        <q-item clickable tag="a" href="{% endraw %}{{ url_for('core.school') }}{% raw %}" exact active-class="text-orange-8">
+          <q-item-section avatar><q-icon name="o_school"></q-icon></q-item-section>
+          <q-item-section>Doctoral School</q-item-section>
+          <q-item-section side><q-icon name="o_arrow_forward" size="xs" class="text-grey-5"></q-icon></q-item-section>
         </q-item>
         <q-separator class="q-my-md"></q-separator>
         <q-item clickable :to="{name: 'abstracts'}" exact active-class="text-orange-8">

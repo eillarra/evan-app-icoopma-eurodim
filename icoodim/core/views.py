@@ -10,8 +10,14 @@ core: Blueprint = Blueprint("core", __name__, static_folder="static", template_f
 
 @core.route("/")
 @cache.cached()
-def onepage():
-    return render_template("core/onepage.html")
+def conference():
+    return render_template("core/conference.html")
+
+
+@core.route("/doctoral-school/")
+@cache.cached()
+def school():
+    return render_template("core/school.html")
 
 
 @core.route("/favicon.ico")
