@@ -54,3 +54,6 @@ blockquote {
           border-radius: 999px;
           margin: 0 0 20px 30px;
           display: block; }
+
+.q-item.td {
+  min-height: auto; }

@@ -28,6 +28,10 @@ var Store = new Vuex.Store({
         } catch (e) {
           res.data.abstractSubmissionDeadline = null;
         }
+        res.data.sessions.map(function (obj) {
+          obj.startAt = moment(obj.start_at);
+          return obj;
+        });
         state.event = res.data;
         Quasar.plugins.Loading.hide();
 
@@ -79,6 +83,20 @@ var CommitteeView = {
   computed: Vuex.mapState(['event', 'contents'])
 };
 
+var ProgramView = {
+  template: '#v-program',
+  computed: _.extend(
+    Vuex.mapState(['event', 'contents']), {
+    program: function () {
+      if (!this.event) return null;
+      return _.groupBy(this.event.sessions.map(function (obj) {
+        obj.day = obj.startAt.format('dddd, MMM D');
+        return obj;
+      }), 'day');
+    }
+  })
+};
+
 var RegistrationView = {
   template: '#v-registration',
   computed: _.extend(
@@ -126,6 +144,12 @@ var Router = new VueRouter({
       path: '/',
       pathToRegexpOptions: {strict: true},
       component: IndexView
+    },
+    {
+      name: 'program',
+      path: '/program/',
+      pathToRegexpOptions: {strict: true},
+      component: ProgramView
     },
     {
       name: 'registration',
