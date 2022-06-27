@@ -30,6 +30,10 @@
           <q-item-section avatar><q-icon name="o_record_voice_over"></q-icon></q-item-section>
           <q-item-section>Invited speakers</q-item-section>
         </q-item>
+        <q-item clickable :to="{name: 'program'}" exact active-class="text-orange-8">
+          <q-item-section avatar><q-icon name="o_view_week"></q-icon></q-item-section>
+          <q-item-section>Program</q-item-section>
+        </q-item>
         <q-separator class="q-my-md"></q-separator>
         <q-item clickable tag="a" href="{% endraw %}{{ url_for('core.school') }}{% raw %}" exact active-class="text-orange-8">
           <q-item-section avatar><q-icon name="o_school"></q-icon></q-item-section>
@@ -229,6 +233,39 @@
       <h6 class="q-mb-lg">Journal of Materials Science: Materials in Electronics</h6>
       <img src="{% endraw %}{{ url_for('static', filename='images/springer.png') }}{% raw %}" class="springer float-right q-ml-lg q-mb-lg">
       <marked :text="contents['proceedings'].value" />
+    </div>
+  </script>
+
+  <script type="text/x-template" id="v-program">
+    <div v-if="event && contents">
+      <h6 class="q-mb-lg">Program</h6>
+      <q-banner v-if="contents['program'].files.length" rounded inline-actions class="bg-yellow-2 text-dark q-my-lg">
+        Download the complete program in a PDF file, or search below.
+        <template v-slot:action>
+          <q-btn flat color="orange-8" label="Download program" type="a" target="_blank" rel="noopener" :href="contents['program'].files[0].url" />
+        </template>
+      </q-banner>
+      <!--<marked :text="contents['program'].value" class="q-mt-lg" />-->
+      <q-input filled v-model="q" placeholder="Search papers and posters by title, author..." :dense="$q.screen.gt.sm" class="q-mb-xl">
+        <template v-slot:prepend>
+          <q-icon v-if="q !== ''" name="o_clear" @click="q = ''" class="cursor-pointer"></q-icon>
+          <q-icon name="o_search"></q-icon>
+        </template>
+      </q-input>
+      <div v-for="(data, id) in custom_sessions">
+        <div v-if="id in abstracts_per_session">
+          <h6 class="q-mt-lg q-mb-sm">{{ data.title }}</h6>
+          <small>
+            <q-icon name="o_today" class="q-mr-xs q-mb-xs" /> {{ data._start_at.format('dddd MMM D, H:mm') }} - {{ data._end_at.format('H:mm') }}<br>
+            <q-icon name="o_meeting_room" class="q-mr-xs q-mb-xs" />Room: {{ data.room }}
+            <span v-if="data.chair"> &nbsp;/&nbsp; <q-icon name="o_chair" class="q-mr-xs q-mb-xs" />{{ data.chair }}</span>
+            <span> &nbsp;/&nbsp; <a :href="'https://evan.ugent.be/c/icoopma-eurodim/session-abstracts/' + id + '.pdf'" target="_blank" class="inherit"><q-icon name="o_sim_card_download" class="q-mr-xs q-mb-xs" />Download abstracts</a></span>
+          </small>
+          <ul>
+            <li v-for="abstract in abstracts_per_session[id]">
+              <a :href="(abstract.file) ? abstract.file.url : '#'" target="_blank" class="inherit">{{ abstract.title }}</a>; <em>{{ abstract.authors }}</em></li>
+        </div>
+      </div>
     </div>
   </script>
 

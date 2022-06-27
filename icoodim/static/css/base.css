@@ -21,6 +21,8 @@ h6 {
     a.inherit {
       text-decoration: none;
       color: inherit; }
+      a.inherit:hover {
+        text-decoration: underline; }
 
 blockquote {
   border-left: 1px dashed #464748;
