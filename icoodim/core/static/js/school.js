@@ -1,6 +1,11 @@
 var EVAN_URL = 'https://evan.ugent.be/api/v1/events/icoopma-eurodim-school/';
 
 
+var getMoment = function (dt, tz) {
+  return moment(dt).tz(tz || 'Europe/Brussels');
+};
+
+
 var Store = new Vuex.Store({
   state: {
     event: null,
@@ -29,7 +34,7 @@ var Store = new Vuex.Store({
           res.data.abstractSubmissionDeadline = null;
         }
         res.data.sessions.map(function (obj) {
-          obj.startAt = moment(obj.start_at);
+          obj.startAt = getMoment(obj.start_at);
           return obj;
         });
         state.event = res.data;
@@ -56,9 +61,9 @@ var IndexView = {
       if (!this.event.custom_data.dates || !this.event.custom_data.dates.length) return [];
 
       return this.event.custom_data.dates.map(function (d) {
-        d.startDate = moment(d.start_date);
+        d.startDate = getMoment(d.start_date);
         if (d.format == 'range' && d.end_date) {
-          d.formatted = d.startDate.format('MMM D') + '-' + moment(d.end_date).format('D, Y');
+          d.formatted = d.startDate.format('MMM D') + '-' + getMoment(d.end_date).format('D, Y');
         } else {
           d.formatted = d.startDate.format({
             'date': 'MMM D, Y',
