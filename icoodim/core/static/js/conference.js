@@ -187,7 +187,7 @@ var ProgramView = {
         '42A': {
           start_at: '20220704T133000+0200',
           end_at: '20220704T165000+0200',
-          chair: 'Roel Baets',
+          chair: 'Vincent Rodriguez',
           title: 'Photonics 1: photonic systems (ICOOPMA)',
           room: 'Refectory'
         },
@@ -229,14 +229,14 @@ var ProgramView = {
         '51B': {
           start_at: '20220705T141500+0200',
           end_at: '20220705T170000+0200',
-          chair: 'Samira Khelifi',
+          chair: 'Johan Lauwaert',
           title: 'Photovoltaics 2 (ICOOPMA)',
           room: 'Vermeylen'
         },
         '52B': {
           start_at: '20220705T141500+0200',
           end_at: '20220705T170000+0200',
-          chair: 'Juan Maria Garcia Lastra',
+          chair: 'TBD',
           title: 'Theory and computational modeling (EuroDIM)',
           room: 'Refectory'
         },
@@ -292,7 +292,7 @@ var ProgramView = {
         '72P': {
           start_at: '20220707T133000+0200',
           end_at: '20220707T141000+0200',
-          chair: 'Henk Vrielinck',
+          chair: 'Dirk Poelman',
           title: 'Plenary session',
           room: 'Refectory'
         },
