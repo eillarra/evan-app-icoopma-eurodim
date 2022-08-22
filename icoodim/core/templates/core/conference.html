@@ -120,13 +120,22 @@
   <script type="text/x-template" id="v-index">
     <div v-if="event">
       <h6 class="q-mb-lg">{{ event.full_name }}</h6>
-      <q-banner rounded inline-actions class="bg-yellow-2 text-dark q-my-lg">
+      <!--<q-banner rounded inline-actions class="bg-yellow-2 text-dark q-my-lg">
         <template v-slot:avatar>
           <q-icon name="o_mark_email_read" />
         </template>
         Subscribe to our mailing list for the latest news.
         <template v-slot:action>
           <q-btn flat color="orange-8" label="Subscribe" type="a" target="_blank" rel="noopener" href="https://lists.ugent.be/wws/subscribe/icoopma-eurodim" />
+        </template>
+      </q-banner>-->
+      <q-banner rounded inline-actions class="bg-light-blue-1 text-dark q-my-lg">
+        <template v-slot:avatar>
+          <q-icon name="o_photo" />
+        </template>
+        Check the photos of the conference
+        <template v-slot:action>
+          <q-btn flat color="light-blue-8" label="View album" type="a" target="_blank" rel="noopener" href="https://beeld.ugent.be/nl/fotoalbum/icoopma-en-eurodim-2022" />
         </template>
       </q-banner>
       <div class="row q-my-lg" :class="{'q-col-gutter-y-md q-col-gutter-x-xl': $q.screen.gt.sm, 'q-col-gutter-md': $q.screen.lt.md}">
