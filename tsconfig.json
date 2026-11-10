@@ -1,0 +1,15 @@
+{
+  "extends": "./.quasar/tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@evan/*": ["./evan-kit/src/*"],
+      "#q-app": ["./node_modules/@quasar/app-vite/types/index.d.ts"],
+      "#q-app/client": ["./node_modules/@quasar/app-vite/exports/client/client.d.ts"]
+    }
+  },
+  "include": ["./src/**/*", "./src-pwa/**/*", "./evan-kit/src/**/*"],
+  "exclude": ["./dist", "./node_modules", "./deploy", "./public"]
+}

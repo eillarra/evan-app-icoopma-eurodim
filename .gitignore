@@ -1,14 +1,30 @@
 .DS_Store
-._*
+.thumbs.db
+node_modules
 
-__pycache__
-*.py[cod]
-*$py.class
-.mypy_cache
-.vscode
+# Quasar core related directories
+.quasar
+/quasar.config.*.temporary.compiled*
 
-.coverage
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# local .env files
 .env
-.webassets-cache
-htmlcov
-test-reports
+.env.*
+.local
+
+# Yarn
+.yarn/
+
+# build output
+/dist

@@ -1,9 +1,16 @@
-FROM python:3.10-slim
+FROM node:24-slim AS build
 
-EXPOSE 5000
+RUN corepack enable && corepack prepare yarn@stable --activate
 
 WORKDIR /app
-COPY requirements.txt /app/
-RUN pip install --no-cache-dir -q -r requirements.txt
 
-COPY . /app
+COPY . .
+RUN yarn install --immutable
+RUN yarn build
+
+FROM nginx:alpine
+
+COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist/pwa /usr/share/nginx/html
+
+EXPOSE 80
